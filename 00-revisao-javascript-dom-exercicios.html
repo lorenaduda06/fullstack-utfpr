@@ -1,0 +1,260 @@
+<!-- Considerando o código HTML apresentado a seguir, implemente códigos JavaScript que implementem as seguintes funcionalidades: -->
+
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>Exercício com DOM-HTML</title>
+  <style type="text/css" media="all">
+    .invisivel {
+      opacity: 0;
+      transform: scale(0.1);
+      max-height: 0;
+    }
+
+    .animada {
+      transition: all linear 3s;
+      opacity: 1;
+      transform: scale(2);
+      max-height: 100px;
+    }
+
+    .ch {
+      background-color: cyan;
+      transform: scale(2);
+    }
+
+    .mascara {
+      overflow: hidden;
+      width: 387px;
+      height: 60px;
+      position: relative;
+    }
+
+    .mascara .atrapalhando {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 100%;
+      background-color: red;
+    }
+
+    .mascara .utfpr {
+      height: 60px;
+      width: 3000px;
+      background-image: url(http://portal.utfpr.edu.br/++theme++utfpr_branco/img/logo.png);
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Exercício com DOM-HTML</h1>
+  <p>Faz <span class="dias"></span> que estamos estudando JavaScript.</p>
+
+  <p class="invisivel">Essa é uma mensagem escondida na página web.</p>
+  <p class="animada invisivel">Essa é uma mensagem animada na página web.</p>
+
+  <h2>Disciplinas por período</h2>
+  <ul>
+    <li>ALGORITMOS - PERÍODO 1 - (90h)</li>
+    <li>INTRODUÇÃO A SISTEMAS OPERACIONAIS - PERÍODO 1 - (30h)</li>
+    <li>PROGRAMAÇÃO ORIENTADA A OBJETOS - PERÍODO 2 - (90h)</li>
+    <li>PROGRAMAÇÃO WEB FRONT-END - PERÍODO 2 - (60h)</li>
+    <li>BANCO DE DADOS - PERÍODO 2 - (60h)</li>
+    <li>PROGRAMAÇÃO WEB BACK-END - PERÍODO 3 - (60h)</li>
+    <li>ESTRUTURA DE DADOS - PERÍODO 3 - (60h)</li>
+    <li>PROGRAMAÇÃO WEB FULLSTACK - PERÍODO 4 - (60h)</li>
+    <li>ESTRATÉGIAS DE PROGRAMAÇÃO - PERÍODO 4 - (60h)</li>
+  </ul>
+
+  <p class="ch_total">Carga-horária total: </p>
+
+  <div class="mascara">
+    <div class="atrapalhando"></div>
+    <div class="utfpr"></div>
+  </div>
+
+  <h2>Disciplinas em ordem alfabética</h2>
+  <ul class="ordenado">
+  </ul>
+
+  <h2>Disciplinas em ordem alfabética descrescente</h2>
+  <ul class="decrescente">
+  </ul>
+
+  <h2>Disciplinas de programação</h2>
+  <ul class="programacao"></ul>
+
+</body>
+
+<script>
+  let carga_total = 0;
+  // EXERCÍCIO 1
+  const titulo = document.querySelector("title");
+  const titulo_h1 = document.querySelector("h1");
+
+  titulo.textContent += " e JavaScript";
+  titulo_h1.innerText += " e JavaScript";
+
+  // EXERCÍCIO 2
+  const span1 = document.querySelector(".dias");
+  const data_inicio = new Date("2026-05-01");
+  const data_atual = new Date();
+
+  const diferenca = data_atual - data_inicio;
+
+  const qtd_dias = Math.floor(diferenca / (24 * 60 * 60 * 1000));
+  span1.innerHTML = qtd_dias + " dias";
+
+  // EXERCÍCIO 3
+  span1.style.backgroundColor = "red";
+
+  // EXERCÍCIO 4
+  const elementos_invisiveis = document.querySelectorAll(".invisivel");
+  elementos_invisiveis.forEach((p) => {
+    p.classList.remove("invisivel");
+  });
+
+  // EXERCÍCIO 5
+  const itens_ul = document.querySelectorAll("li");
+  itens_ul.forEach((item) => {
+    item.textContent = item.textContent.toLowerCase();
+
+    // EXERCÍCIO 7
+    const disciplina_texto = item.innerText;
+    const disciplina_horas = disciplina_texto.slice(-4, -2);
+    const qtd_horas = parseInt(disciplina_horas);
+    const qtd_aulas_semana = qtd_horas / 15;
+    item.innerText += ` -> Aulas por semana: ${qtd_aulas_semana}`;
+
+    // EXERCÍCIO 6 a)
+    const disciplina_li = item.innerText;
+
+    if (disciplina_li.indexOf("web") !== -1) {
+      item.innerText += " (Fácil)";
+    }
+
+    // EXERCÍCIO 6 b)
+    const posicao_periodo = disciplina_texto.indexOf("período ");
+
+    if (posicao_periodo !== -1) {
+      const disciplina_periodo = disciplina_texto.substring(posicao_periodo + 8, posicao_periodo + 9);
+
+      switch (disciplina_periodo) {
+        case "1":
+          item.style.backgroundColor = "green";
+          break;
+
+        case "2":
+          item.style.backgroundColor = "pink";
+          break;
+
+        case "3":
+          item.style.backgroundColor = "purple";
+          break;
+
+        case "4":
+          item.style.backgroundColor = "gray";
+          break;
+      }
+    }
+
+    // EXERCÍCIO 8
+    carga_total += qtd_horas;
+  });
+  const p_carga_total = document.querySelector(".ch_total");
+
+  const span_classe_ch = document.createElement("span");
+  span_classe_ch.classList.add("ch");
+  span_classe_ch.innerText = `${carga_total}h`;
+  p_carga_total.appendChild(span_classe_ch);
+
+  // EXERCÍCIO 9
+  const mascara = document.querySelector(".mascara");
+  const elemento_removivel = document.querySelector(".atrapalhando");
+  mascara.removeChild(elemento_removivel);
+
+  // EXERCÍCIO 10
+  const vetor_li = [];
+  const todos_li = document.querySelectorAll("li");
+  todos_li.forEach((item) => {
+    const texto_li = item.innerText;
+    vetor_li.push(texto_li);
+  });
+
+  vetor_li.sort();
+
+  const ul_ordenada = document.querySelector(".ordenado");
+  vetor_li.forEach((texto_li) => {
+    const novo_item = document.createElement("li");
+    novo_item.innerText = texto_li;
+    ul_ordenada.appendChild(novo_item);
+  });
+
+  // EXERCÍCIO 11
+  const vetor_li_dec = [...vetor_li];
+  vetor_li_dec.reverse();
+
+  const ul_decrescente = document.querySelector(".decrescente");
+  vetor_li_dec.forEach((texto_li) => {
+    const novo_item = document.createElement("li");
+    novo_item.innerText = texto_li;
+    ul_decrescente.appendChild(novo_item);
+  });
+
+  // EXERCÍCIO 12
+  const ul_disciplinas_programacao = document.querySelector(".programacao");
+  itens_ul.forEach((disciplina) => {
+    const disciplina_programacao = disciplina.innerText;
+
+    if (disciplina_programacao.indexOf("programação") !== -1) {
+      const novo_item = document.createElement("li");
+      novo_item.innerText = disciplina_programacao;
+      ul_disciplinas_programacao.appendChild(novo_item);
+    }
+  });
+</script>
+
+</html>
+
+<!--
+1. Inclua a String " e JavaScript" no conteúdo interno dos elementos title e h1. (atribuição)
+Dica: utilize o objeto document com o método querySelector. Vai ser necessário fazer a concatenação de Strings também.
+
+2. Considerando que nossas aulas sobre JavaScript começaram no dia 01/05. Utilize a classe Date do JavaScript para calcular o número de dias que estamos tendo JavaScript nas aulas e insira esse valor no elemento span com classe "dias". (operações aritméticas)
+Dica: utilize o método querySelector do document e o atributo innerHTML do elemento span.
+
+3. Deixe o elemento span com o número de dias com uma cor de fundo vermelha. (atribuição)
+Dica: utilize o atributo style para alterar a apresentação inline do elemento.
+
+4. Faça os elementos com a classe invisivel, aparecerem na tela. (atribuição)
+Dica: removam a classe invisivel desses elementos utilizando a propriedade className e a classList.
+
+5. Acessar os elementos li e deixar todas as letras minúsculas. (repetição)
+Dica: utilize o método querySelectorAll (retorna uma lista de nós/elementos) e o método toLowerCase da classe String.
+
+6. Nas disciplinas que contiverem o termo "web", inclua a string " (Fácil)" ao final. (condicional e string)
+Dica: utilizar os métodos de String indexOf ou search; e substring.
+
+6. Deixe disciplinas do mesmo período com uma cor de fundo igual. (condicional e string)
+Dica: utilizar os métodos de String indexOf ou search; e substring.
+
+7. Para cada li, acrescente em seu conteúdo interno o número de aulas por semana de cada disciplina. Lembrando que esse valor pode ser obtido, dividindo o número de horas totais de uma disciplina por 15. (repetição e string)
+Dica: utilize o método de String slice com valores negativos.
+
+8. Calcular a soma das cargas-horárias das disciplinas nos lis e inserir no elemento span de classe ch, dentro do elemento p de classe ch_total. (repetição)
+Dica: utilizar os métodos createElement e appendChild.
+
+9. Remover o elemento de classe atrapalhando. (atribuição)
+Dica: utilizar o método removeChild no elemento de classe mascara.
+
+10. Insira os conteúdos internos dos elementos lis em um vetor, ordene esse vetor alfabeticamente e insira cada um desses ítens como um elemento li dentro do elemento ul com classe ordenado. (vetores)
+Dica: utilizar os métodos push e sort de uma lista.
+
+11. Utilizando o vetor anterior, insira os elementos em ordem alfabética decrescente (invertida) no elemento ul com classe "decrescente". (vetores)
+
+12. Utilizando o vetor anterior, insira elementos li com as disciplinas que contenham a palavra programação no elemento ul com classe "programacao". (vetores)
+
+-->

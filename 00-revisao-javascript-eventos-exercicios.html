@@ -1,0 +1,260 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>Exercícios de Eventos</title>
+  <style type="text/css" media="all">
+    div {
+      transition: all linear 1s;
+      max-height: 100px;
+      background-color: white;
+      overflow: hidden;
+    }
+
+    .escondido {
+      max-height: 0;
+    }
+
+    section {
+      padding: 10px;
+      border: 1px solid black;
+      margin-bottom: 10px;
+    }
+
+    section p span {
+      font-weight: bold;
+    }
+
+    section hr {
+      margin: 10px auto;
+      width: 98%;
+    }
+
+    section .cursor {
+      position: absolute;
+      height: 30px;
+      width: 30px;
+      background-color: red;
+    }
+
+    section {
+      display: flex;
+      flex-direction: column;
+      gap: 1.4rem;
+    }
+
+    section button {
+      align-self: flex-start;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Exercícios de Eventos</h1>
+    <p>Podem alterar a estrutura do HTML para ficar mais fácil de selecionar os elementos.</p>
+  </header>
+
+  <section>
+    <h2>Evento click</h2>
+    <p><span>Exercício 1:</span> Alterar a cor do div apresentado a seguir, quando o próximo botão "click1" for
+      pressionado.</p>
+    <button id="btn-1">click1</button>
+    <div id="div-1">COR?</div>
+    <hr />
+
+    <p><span>Exercício 2:</span> Apresentar/esconder o div apresentado a seguir, conforme o usuário pressionar o botão
+      "click2".</p>
+    <button id="btn-2">click2</button>
+    <div class="escondido" style="background-color: yellow; height: 50px;">Conteúdo secreto, escondido</div>
+    <hr />
+
+    <p><span>Exercício 3:</span> Mover o div apresentado a seguir para a direita/esquerda, toda vez que o botão "click3"
+      for clicado (utilizar o style.transform).</p>
+    <button id="btn-3">click3</button>
+    <div id="div-3" style="height: 50px; width: 50px; background-color: red; transform: translateX(0);"></div>
+    <hr />
+
+    <p><span>Exercício 4:</span> Alterar o conteúdo textual e apresentação do botão "click4", toda vez que ele for
+      clicado.</p>
+    <button id="btn-4">click4</button>
+    <hr />
+
+    <p><span>Exercício 5:</span> Acrescentar um elemento li com o texto "qualquer ítem" no elemento ul a seguir, toda
+      vez que o botão "click5" for pressionado.</p>
+    <button id="btn-5">click5</button>
+    <ul id="ul-1"></ul>
+    <hr />
+
+    <p><span>Exercício 6</span>: Acrescentar um elemento li com o texto "item X" no elemento ul a seguir (sendo X, o
+      índice do elemento no ul), toda vez que o botão "click6" for pressionado.</p>
+    <button id="btn-6">click6</button>
+    <ul id="ul-2"></ul>
+  </section>
+
+  <section>
+    <h2>Eventos de teclado e o elemento input</h2>
+    <p><span>Exercício 7:</span> Apresentar o conteúdo do input a seguir (utilizando um alert), toda vez que o botão
+      "click7" for pressionado.</p>
+    <fieldset>
+      <legend>Exercício 7</legend>
+      <input id="inp-1" type="text" value="" />
+      <button id="btn-7">click7</button>
+    </fieldset>
+
+    <p><span>Exercício 8:</span> Inserir o conteúdo do input a seguir em um elemento li e depois acrescenta-lo no
+      elemento ul apresentado a seguir, toda vez que o botão "click8" for pressionado.</p>
+    <fieldset>
+      <legend>Exercício 8</legend>
+      <input id="inp-2" type="text" value="" />
+      <button id="btn-8">click8</button>
+      <ul id="ul-3"></ul>
+    </fieldset>
+
+    <p><span>Exercício 9:</span> Inserir o conteúdo do input a seguir dentro do elemento div a seguir, toda vez que o
+      conteúdo do input for alterado (utilizar o evento change/keyup).</p>
+    <fieldset>
+      <legend>Exercício 9</legend>
+      <div>
+        <input id="inp-3" type="text" value="" />
+        <div id="div-4" style="height: 25px; width: 50%; background-color: cyan"></div>
+      </div>
+    </fieldset>
+
+    <p><span>Exercício 10:</span> Capturar quando as teclas de seta para baixo/cima/esquerda/direita foram pressionadas,
+      e alterar o posicionamento do div de classe cursor (utilizar o parâmetro evento e o atributo keyCode). É possível
+      fazer sem o input? (Dica: evento focus, tabindex)</p>
+    <fieldset>
+      <legend>Exercício 10</legend>
+      <input id="inp-4" type="text" value="" />
+      <div style="position: relative; border: 1px solid black; margin: 10px; height: 100px;">
+        <div id="div-5" class="cursor" style="top: 40px; left: 45%"></div>
+      </div>
+    </fieldset>
+
+  </section>
+
+  <script>
+    // EXERCÍCIO 1
+    const btn1 = document.querySelector("#btn-1");
+    const div1 = document.querySelector("#div-1");
+    btn1.addEventListener("click", (e) => {
+      div1.style.backgroundColor = "pink";
+    });
+
+    // EXERCÍCIO 2
+    const btn2 = document.querySelector("#btn-2");
+    const div2 = document.querySelector(".escondido");
+    btn2.addEventListener("click", (e) => {
+      div2.classList.toggle("escondido");
+    });
+
+    // EXERCÍCIO 3
+    const btn3 = document.querySelector("#btn-3");
+    const div3 = document.querySelector("#div-3");
+    btn3.addEventListener("click", (e) => {
+      if (div3.style.transform === "translateX(0px)" || div3.style.transform === "") {
+        div3.style.transform = "translateX(250px)";
+      }
+      else {
+        div3.style.transform = "translateX(0px)";
+      }
+    });
+
+    // EXERCÍCIO 4
+    let click_ativo = false;
+    const btn4 = document.querySelector("#btn-4");
+    btn4.addEventListener("click", (e) => {
+      click_ativo = !click_ativo;
+      if (click_ativo) {
+        btn4.innerText = "Botão 4";
+        btn4.style.color = "white";
+        btn4.style.backgroundColor = "purple";
+      }
+      else {
+        btn4.innerText = "Click 4";
+        btn4.style.color = "gray";
+        btn4.style.backgroundColor = "pink";
+      }
+    });
+
+    // EXERCÍCIO 5
+    const btn5 = document.querySelector("#btn-5");
+    const ul1 = document.querySelector("#ul-1");
+    btn5.addEventListener("click", (e) => {
+      const novo_item = document.createElement("li");
+      novo_item.innerText = "Qualquer item";
+
+      ul1.appendChild(novo_item);
+    });
+
+    // EXERCÍCIO 6
+    const btn6 = document.querySelector("#btn-6");
+    const ul2 = document.querySelector("#ul-2");
+    let x = 0;
+    btn6.addEventListener("click", (e) => {
+      const novo_item = document.createElement("li");
+      novo_item.innerText = `Item ${x}`;
+      ul2.appendChild(novo_item);
+      x++;
+    });
+
+    // EXERCÍCIO 7
+    const btn7 = document.querySelector("#btn-7");
+    const inp1 = document.querySelector("#inp-1");
+    btn7.addEventListener("click", (e) => {
+      if (inp1.value === "") {
+        alert("Escreva algo no campo para ser exibido.");
+        return;
+      }
+      else {
+        alert(inp1.value);
+        return;
+      }
+    });
+
+    // EXERCÍCIO 8
+    const btn8 = document.querySelector("#btn-8");
+    const inp2 = document.querySelector("#inp-2");
+    const ul3 = document.querySelector("#ul-3");
+    btn8.addEventListener("click", (e) => {
+      const novo_item = document.createElement("li");
+      novo_item.innerText = inp2.value;
+      ul3.appendChild(novo_item);
+      inp2.value = "";
+    });
+
+    // EXERCÍCIO 9
+    const inp3 = document.querySelector("#inp-3");
+    const div4 = document.querySelector("#div-4");
+    inp3.addEventListener("keyup", (e) => {
+      div4.innerText = inp3.value;
+    });
+
+    // EXERCÍCIO 10
+    const inp4 = document.querySelector("#inp-4");
+    const div5 = document.querySelector("#div-5");
+    inp4.addEventListener("keyup", (e) => {
+      switch (e.key) {
+        case "ArrowUp":
+          div5.style.transform = "translateY(-30px)";
+          break;
+
+        case "ArrowDown":
+          div5.style.transform = "translateY(30px)";
+          break;
+
+        case "ArrowRight":
+          div5.style.transform = "translateX(200px)";
+          break;
+
+        case "ArrowLeft":
+          div5.style.transform = "translateX(-200px)";
+          break;
+      }
+    });
+  </script>
+</body>
+
+</html>
