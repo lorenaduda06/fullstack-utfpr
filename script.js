@@ -1,3 +1,4 @@
+// Lorena Eduarda Barros Martinelli
 const inp_cep = document.querySelector('input.form-control[name="cep"]');
 const inp_logradouro = document.querySelector('input.form-control[name="logradouro"]');
 const inp_bairro = document.querySelector('input.form-control[name="bairro"]');
