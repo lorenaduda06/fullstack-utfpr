@@ -1,0 +1,104 @@
+:root {
+    --fundo: #160020;
+    --card: #250035;
+    --roxo: #8B2BE2;
+    --roxo-claro: #C084FC;
+    --borda: #8B2BE2;
+    --campos-inp: #180021;
+    --texto: #F5F0F7; 
+}
+
+body {
+    background-color: var(--fundo);
+    margin: 0 auto;
+}
+
+.card {
+    width: 90%;
+    max-width: 50rem;
+    background-color: var(--card);
+    border: 1px solid var(--borda);
+    border-radius: 1rem;
+    box-shadow: 0 0 30px rgba(140, 40, 220, 0.25);
+}
+
+.card-title {
+    color: var(--roxo-claro);
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.form-label {
+    color: var(--texto);
+    margin-top: 1.3rem;
+}
+
+.form-control {
+    width: 35%;
+    background-color: var(--campos-inp);
+    color: var(--texto);
+    border: 1px solid var(--roxo);
+}
+
+.form-control:focus {
+    border-color: var(--roxo-claro);
+    box-shadow: 0 0 15px rgba(190, 130, 250, 0.3);
+}
+
+#media {
+    color: var(--roxo-claro);
+    font-weight: bold;
+    text-align: center;
+    margin: 1rem;
+}
+
+.btn {
+    width: 15%;
+    align-self: center;
+    background-color: var(--roxo);
+    color: var(--texto);
+    border: none;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding: 0.8rem 1.5rem;
+    border-radius: 0.5rem;
+}
+
+.btn:hover {
+    cursor: pointer;
+    background-color: var(--roxo-claro);
+    box-shadow: 0 0 15px rgba(190, 130, 250, 0.3);
+}
+
+.resultado-card {
+    max-width: 40rem;
+    text-align: center;
+    color: var(--texto);
+}
+
+#nome-aluno {
+    color: var(--roxo-claro);
+}
+
+#media-final {
+    color: var(--roxo-claro);
+    font-weight: bold;
+    border: 1px solid var(--roxo);
+    border-radius: 0.3rem;
+    background-color: var(--campos-inp);
+    box-shadow: 0 0 15px rgba(140, 40, 220, 0.2);
+}
+
+.span-media {
+    color: var(--texto);
+}
+
+#resultado-media {
+    color: var(--roxo-claro);
+    font-weight: bold;
+}
+
+#status-aprovacao {
+    color: var(--roxo-claro);
+    font-weight: bold;
+}

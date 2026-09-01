@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="index.css">
+    <title>Área do Aluno</title>
+</head>
+
+<body>
+    <main class="container-fluid min-vh-100 d-flex justify-content-center align-items-center">
+        <form id="form-aluno" class="card">
+            <div class="card-body m-3">
+                <h1 class="card-title">Dados do Aluno</h1>
+
+                <label class="form-label" for="nome">Nome:</label>
+                <input class="form-control" id="nome" type="text" name="nome" required>
+
+                <label class="form-label" for="nota1">Nota 1:</label>
+                <input class="form-control notas" type="number" name="nota1" required>
+
+                <label class="form-label" for="nota2">Nota 2:</label>
+                <input class="form-control notas" type="number" name="nota2" required>
+
+                <label class="form-label" for="nota3">Nota 3:</label>
+                <input class="form-control notas" type="number" name="nota3" required>
+
+                <label class="form-label" for="nota4">Nota 4:</label>
+                <input class="form-control notas" type="number" name="nota4" required>
+            </div>
+
+            <div id="media">Média das notas: </div>
+
+            <button class="btn" id="btn-enviar" type="submit">Registrar Resultado</button>
+        </form>
+    </main>
+
+    <script src="scripts.js"></script>
+</body>
+
+</html>
