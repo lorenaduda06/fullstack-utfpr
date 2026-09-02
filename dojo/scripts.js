@@ -1,4 +1,3 @@
-const btn_enviar = document.getElementById("btn-enviar");
 const notas = document.querySelectorAll(".notas");
 const media = document.getElementById("media");
 const form_aluno = document.getElementById("form-aluno");
